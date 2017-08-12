@@ -1,22 +1,13 @@
 from flask import Blueprint, flash, render_template, url_for, redirect, g
 from flask_login import login_user, logout_user, current_user
 
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, validators, SubmitField
+from forms import LoginForm
 
 from models import User
 from application import flask_bcrypt
 
 users = Blueprint('users', __name__, template_folder='templates')
 
-class LoginForm(FlaskForm):
-	
-	username = StringField('username', validators=[validators.DataRequired()])
-
-	password = PasswordField('password', validators=[validators.DataRequired(),
-													 validators.Length(min=6)])
-
-	submit =  SubmitField('submit', validators=[validators.DataRequired()])
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():

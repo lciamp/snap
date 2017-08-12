@@ -5,8 +5,7 @@ class LoginForm(FlaskForm):
 	
 	username = StringField('username', validators=[validators.DataRequired()])
 
-	password = PasswordField('password', validators=[validators.DataRequired(),
-													 validators.Length(min=6)])
+	password = PasswordField('password', validators=[validators.DataRequired(), validators.Length(min=6)])
 
 	submit =  SubmitField('submit', validators=[validators.DataRequired()])
 

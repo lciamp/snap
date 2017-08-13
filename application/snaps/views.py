@@ -16,15 +16,16 @@ def listing():
 @snaps.route("/add", methods=['GET', 'POST'])
 @login_required
 def add():
+	
 	form = SnapsForm()
 
 	if form.validate_on_submit():
 		user_id = current_user.id
 
 		snap = Snap(user_id = user_id,
-                            name = form.name.data,
-                            content = form.content.data,
-                            extension = form.extension.data)
+                    name = form.name.data,
+                    content = form.content.data,
+                    extension = form.extension.data)
 
 		db.session.add(snap)
 

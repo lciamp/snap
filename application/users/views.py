@@ -11,12 +11,12 @@ users = Blueprint('users', __name__, template_folder='templates')
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():
-	if current_user.is_authenticated():
+	if current_user.is_authenticated:
 		redirect(urls_for('snaps.listing'))
 
 	form = LoginForm()
 
-	if form.validate():
+	if form.validate_on_submit():
 		user = User.query.filter_by(username=form.username.data).first()
 
 		if not user or not flask_bcrypt.check_password_hash(user.password, form.password.data):

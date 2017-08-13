@@ -10,6 +10,7 @@ def listing():
 	snaps = Snap.query.order_by(Snap.created_on.desc()).limit(20).all()
 	return render_template('snaps/index.html', snaps=snaps)
 
+
 @snaps.route("/add", methods=['GET', 'POST'])
 @login_required
 def add():
@@ -28,8 +29,8 @@ def add():
 		try:
 			db.session.commit()
 		except exc.SQLAlchemyError:
-			current_app.exception("Could not save new snap")
-			flash("Something went worng while posting your snap!")
+			current_app.exception("Could not save new Snap")
+			flash("Something went wrong while saving your Snap")
 
 	else:
 		return render_template('snaps/add.html', form=form)

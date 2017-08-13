@@ -20,9 +20,9 @@ def add():
 		user_id = current_user.id
 
 		snap = Snap(user_id = user_id,
-					name = form.name.data,
-					content = form.content.data,
-					extension = form.extension.data)
+                    name = form.name.data,
+                    content = form.content.data,
+                    extension = form.extension.data)
 
 		db.session.add(snap)
 

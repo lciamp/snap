@@ -14,10 +14,10 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 flask_bcrypt = Bcrypt(app)
 
-from applications.users import models as user_models
+from application.users import models as user_models
 from application.users.views import users
 
-@login_manager
+@login_manager.user_loader
 def load_user(user_id):
 	return application.user_models.query.get(int(user_id))
 

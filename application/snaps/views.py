@@ -1,7 +1,9 @@
-from flask import Blueprint
-from flask_login import login_required
+from flask import Blueprint, render_template, redirect, url_for, current_app, flash
+from flask_login import login_required, current_user
 from forms import SnapsForm
 from models import Snap
+from application import db
+from sqlalchemy import exc
 
 snaps = Blueprint('snaps', __name__, template_folder='templates')
 
@@ -29,7 +31,7 @@ def add():
 		try:
 			db.session.commit()
 		except exc.SQLAlchemyError:
-			current_app.exception("Could not save new Snap")
+			current_app.logger.exception("Could not save new Snap")
 			flash("Something went wrong while saving your Snap")
 
 	else:

@@ -1,4 +1,4 @@
-from flask_wft import FlaskForm
+from flask_wtf import FlaskForm
 from wtforms import StringField, validators, SubmitField
 from wtforms.widgets import TextArea
 

@@ -20,9 +20,12 @@ class Snap(db.Model):
 
 	created_on = db.Column(db.DateTime, default=datetime.datetime.utcnow, index=True)
 
-	user_id = db.Column(db.Integer, db.ForeignKey('user_id'))
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 	user = db.relationship('User', backref=db.backref('snaps', lazy='dynamic'))
+
+	def __repr__(self):
+		return '<Snap {!r}>'.format(self.id)
 
 """
 	def __init__(self, user_id, name, content, extension):
@@ -34,6 +37,4 @@ class Snap(db.Model):
 		self.hash_key = hashlib.sha1(self.content + str(self.created_on)).hexdigest()
 
 """
-	def __repr__(self):
-		return '<Snap {!r}>'.format(self.id)
-
+	

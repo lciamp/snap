@@ -14,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
+login_manager.login_view = 'users.login'
 flask_bcrypt = Bcrypt(app)
 
 from application.users import models as user_models
